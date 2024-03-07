@@ -21,7 +21,7 @@ def save_json_files_to_db(directory_path):
         if filename.endswith('.json'):
             with open(os.path.join(directory_path, filename), 'r') as f:
                 json_data = json.load(f)
-                print(json_data)
+
         store_json_to_db(json_data)
 
 
