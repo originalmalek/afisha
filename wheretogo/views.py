@@ -1,6 +1,7 @@
 from django.http import HttpResponse
-
+from django.shortcuts import render
+from django.template import loader
 
 
 def first_page(request):
-    return HttpResponse("<h2>Здесь будет карта</h2>")
+    return render(request, 'where/index.html')
