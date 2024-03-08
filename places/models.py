@@ -16,7 +16,7 @@ class Place(models.Model):
 
 class Image(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
-    img = models.ImageField(upload_to='places')
+    img = models.ImageField(upload_to='media')
     order = models.PositiveIntegerField(default=0)
 
 
