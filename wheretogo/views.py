@@ -1,11 +1,29 @@
 import json
 
 from django.http import HttpResponse
-from django.shortcuts import render
-from django.template import loader
+from django.shortcuts import render, get_object_or_404
 
-from places.models import Place
 
+from places.models import Place, Image
+
+
+def generate_place_json(request, place_id):
+    imgs =[]
+    place = get_object_or_404(Place, pk=place_id)
+    images = Image.objects.filter(place=place)
+    for image in images:
+        imgs.append(image.img.url)
+    response = {
+    "title": place.title,
+    "imgs": imgs,
+    "description_short": place.description_short,
+    "description_long": place.description_long,
+    "coordinates": {
+        "lng": str(place.lng),
+        "lat": str(place.lat)
+    }}
+
+    return HttpResponse(json.dumps(response, ensure_ascii=False), content_type="application/json")
 
 def first_page(request):
     places = Place.objects.all()
@@ -20,7 +38,7 @@ def first_page(request):
           "properties": {
             "title": place.title,
             "placeId": place.id,
-            "detailsUrl": "https://raw.githubusercontent.com/devmanorg/where-to-go-frontend/master/places/moscow_legends.json"
+            "detailsUrl": f"http://127.0.0.1:8000/place/{place.id}"
           }
         })
 

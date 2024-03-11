@@ -17,12 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from .views import first_page
+from .views import first_page, generate_place_json
 
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', first_page)
+    path('', first_page),
+    path('place/<int:place_id>', generate_place_json),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
