@@ -11,6 +11,17 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
+from environs import Env
+
+env = Env()
+env.read_env()
+
+secret_key=env.str('SECRET_KEY')
+debug=env.bool('DEBUG')
+session_token_secure = env.bool('SESSION_COOKIE_SECURE')
+csfr_token_secure = env.bool('CSRF_COOKIE_SECURE')
+
+static=env.str('STATIC')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,14 +31,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-z5udf^p$$v2%aj5354r^1$dos78_n0%8bz%qw2tobl(0lu4y$x'
+SECRET_KEY = secret_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = debug
 
 ALLOWED_HOSTS = []
 
-
+SESSION_COOKIE_SECURE = session_token_secure
+CSRF_COOKIE_SECURE = csfr_token_secure
 # Application definition
 
 INSTALLED_APPS = [
@@ -118,13 +130,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = f'/{static}/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, static),
 ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
