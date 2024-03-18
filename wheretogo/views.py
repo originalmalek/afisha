@@ -25,7 +25,7 @@ def generate_place_json(request, place_id):
 
     return HttpResponse(json.dumps(response, ensure_ascii=False), content_type="application/json")
 
-def first_page(request):
+def index_page(request):
     places = Place.objects.all()
     places_list = []
     for place in places:
