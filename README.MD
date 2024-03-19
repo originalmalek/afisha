@@ -1,6 +1,6 @@
 # Interactive Map of Moscow
 
-![](screenshots/my_site.png)
+![](screenshots/mysite.png)
 
 [Demo Site]().
 
