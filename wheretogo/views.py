@@ -8,11 +8,11 @@ from places.models import Place, Image
 
 
 def generate_place_json(request, place_id):
-    imgs =[]
     place = get_object_or_404(Place, pk=place_id)
     images = Image.objects.filter(place=place)
-    for image in images:
-        imgs.append(image.img.url)
+
+    imgs = [image.img.url for image in images]
+
     response = {
     'title': place.title,
     'imgs': imgs,
@@ -28,6 +28,8 @@ def generate_place_json(request, place_id):
 def index_page(request):
     places = Place.objects.all()
     places_list = []
+
+
     for place in places:
         places_list.append({
           'type': 'Feature',
