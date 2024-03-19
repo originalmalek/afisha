@@ -2,7 +2,7 @@
 
 ![](screenshots/mysite.png)
 
-[Demo Site]().
+[Demo Site](https://originalmalek.pythonanywhere.com/).
 
 ## Running the Site
 
