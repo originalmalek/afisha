@@ -13,7 +13,7 @@
 
 ## How to Add Data
 (Data is stored in the *media/data* folder in *.json* format.)
-- To add a file, run the command `python3 manage.py load_place ""`
+- To add a file, run the command `python3 manage.py load_place "https://raw.githubusercontent.com/devmanorg/where-to-go-frontend/master/places/moscow_legends.json"`
 
 ## Environment Variables
 
