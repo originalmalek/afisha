@@ -2,7 +2,7 @@
 
 ![](screenshots/mysite.png)
 
-[Demo Site](https://originalmalek.pythonanywhere.com/).
+[Demo Site](https://originalmalek.pythonanywhere.com/).  
 [Json file example](https://raw.githubusercontent.com/devmanorg/where-to-go-frontend/master/places/moscow_legends.json).
 
 ## Running the Site
