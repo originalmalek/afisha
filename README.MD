@@ -5,6 +5,8 @@
 [Demo Site](https://originalmalek.pythonanywhere.com/).  
 [Json file example](https://raw.githubusercontent.com/devmanorg/where-to-go-frontend/master/places/moscow_legends.json).
 
+Python 3.11
+
 ## Running the Site
 
 - Download the code
