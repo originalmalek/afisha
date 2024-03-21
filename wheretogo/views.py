@@ -29,7 +29,6 @@ def index_page(request):
     places = Place.objects.all()
     places_list = []
 
-
     for place in places:
         places_list.append({
           'type': 'Feature',
@@ -44,4 +43,4 @@ def index_page(request):
           }
         })
 
-    return render(request, 'where/index.html', {'places': json.dumps(places_list)})
+    return render(request, 'places/templates/index.html', {'places': json.dumps(places_list)})
