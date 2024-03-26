@@ -31,9 +31,3 @@ class Image(models.Model):
     def __str__(self):
         return f'{self.order} {self.place.title}'
 
-    def save(self, *args, **kwargs):
-        if self.order is None or Image.objects.filter(place=self.place, order=self.order).exists():
-            max_order = Image.objects.filter(place=self.place).aggregate(models.Max('order'))['order__max'] or 0
-            self.order = max_order + 1
-        super().save(*args, **kwargs)
-
