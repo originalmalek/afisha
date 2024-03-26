@@ -24,8 +24,8 @@ class Command(BaseCommand):
         response.raise_for_status()
         place = response.json()
 
-        new_place = Place(title=place['title'], description_short=place['description_short'],
-                          description_long=place['description_long'], lng=place['coordinates']['lng'],
+        new_place = Place(title=place['title'], short_description=place['description_short'],
+                          long_description=place['description_long'], lng=place['coordinates']['lng'],
                           lat=place['coordinates']['lat'])
 
         new_place.save()

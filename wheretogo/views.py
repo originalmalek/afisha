@@ -15,8 +15,8 @@ def generate_place_json(request, place_id):
     response = {
     'title': place.title,
     'imgs': imgs,
-    'description_short': place.description_short,
-    'description_long': place.description_long,
+    'description_short': place.short_description,
+    'description_long': place.long_description,
     'coordinates': {
         'lng': str(place.lng),
         'lat': str(place.lat)
