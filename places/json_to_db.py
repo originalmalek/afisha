@@ -1,10 +1,17 @@
 import json
 import os
+import sys
+from pathlib import Path
 
 import django
 import requests
 from django.core.files.base import ContentFile
 
+# Get the current path
+path = Path(__file__).resolve()
+
+# Add the parent directory (dvmn-django) to the system path
+sys.path.append(str(path.parent.parent))
 os.environ['DJANGO_SETTINGS_MODULE'] = 'wheretogo.settings'
 
 django.setup()
@@ -13,8 +20,10 @@ from places.models import Place, Image
 
 
 def store_json_to_db(json_data):
-    new_place = Place(title=json_data['title'], description_short=json_data['description_short'],
-                      description_long=json_data['description_long'], lng=json_data['coordinates']['lng'],
+    new_place = Place(title=json_data['title'],
+                      short_description=json_data['description_short'],
+                      long_description=json_data['description_long'],
+                      lng=json_data['coordinates']['lng'],
                       lat=json_data['coordinates']['lat'])
 
     new_place.save()
@@ -40,3 +49,4 @@ def save_json_files_to_db(directory_path):
 
 
 save_json_files_to_db('content')
+print('The content succesfully uploaded')
