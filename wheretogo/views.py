@@ -42,4 +42,7 @@ def index_page(request):
           }
         })
 
-    return render(request, 'places/templates/index.html', {'places': json.dumps(places_list)})
+
+    return render(request, 'places/templates/index.html',
+                  {'places': {"type": "FeatureCollection",
+                              "features": places_list}})
