@@ -24,7 +24,7 @@ def store_json_to_db(json_data):
 
         if response.status_code == 200:
             img_data = response.content
-            img_name = img_url.split("/")[-1]  # Get the image name from the url
+            img_name = img_url.split("/")[-1]
 
             new_image = Image(place=new_place)
             new_image.img.save(img_name, ContentFile(img_data), save=True)
