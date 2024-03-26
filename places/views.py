@@ -13,16 +13,17 @@ def generate_place_json(request, place_id):
     imgs = [image.img.url for image in images]
 
     response = {
-    'title': place.title,
-    'imgs': imgs,
-    'description_short': place.short_description,
-    'description_long': place.long_description,
-    'coordinates': {
-        'lng': str(place.lng),
-        'lat': str(place.lat)
-    }}
+        'title': place.title,
+        'imgs': imgs,
+        'description_short': place.short_description,
+        'description_long': place.long_description,
+        'coordinates': {
+            'lng': str(place.lng),
+            'lat': str(place.lat)
+        }}
 
     return HttpResponse(json.dumps(response, ensure_ascii=False), content_type='application/json')
+
 
 def index_page(request):
     places = Place.objects.all()
@@ -30,19 +31,18 @@ def index_page(request):
 
     for place in places:
         places_list.append({
-          'type': 'Feature',
-          'geometry': {
-            'type': 'Point',
-            'coordinates': [place.lng, place.lat]
-          },
-          'properties': {
-            'title': place.title,
-            'placeId': place.id,
-            'detailsUrl': f'/place/{place.id}/'
-          }
+            'type': 'Feature',
+            'geometry': {
+                'type': 'Point',
+                'coordinates': [place.lng, place.lat]
+            },
+            'properties': {
+                'title': place.title,
+                'placeId': place.id,
+                'detailsUrl': f'/place/{place.id}/'
+            }
         })
 
-
-    return render(request, 'places/templates/index.html',
-                  {'places': {"type": "FeatureCollection",
-                              "features": places_list}})
+    return render(request, template_name='places/templates/index.html',
+                  context={'places': {"type": "FeatureCollection",
+                                      "features": places_list}})
