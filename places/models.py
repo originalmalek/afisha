@@ -1,12 +1,11 @@
 from django.db import models
-from django.dispatch import receiver
-from django.db.models.signals import pre_delete
 from tinymce.models import HTMLField
+
 
 class Place(models.Model):
     title = models.CharField(max_length=200, verbose_name='Название экскурсии')
-    description_short = models.TextField(verbose_name='Краткое описание')
-    description_long = HTMLField(verbose_name='Полное описание')
+    short_description = models.TextField(verbose_name='Краткое описание')
+    long_description = HTMLField(verbose_name='Полное описание')
     lng = models.CharField(max_length=20, verbose_name='Долгота')
     lat = models.CharField(max_length=20, verbose_name='Широта')
 
@@ -16,8 +15,10 @@ class Place(models.Model):
     def __str__(self):
         return self.title
 
+
 def get_upload_path(instance, filename):
     return f'places/{instance.place.id}/{filename}'
+
 
 class Image(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name='images')
@@ -36,4 +37,3 @@ class Image(models.Model):
             self.order = max_order + 1
         super().save(*args, **kwargs)
 
-# Signal to delete images when a Place is deleted.
