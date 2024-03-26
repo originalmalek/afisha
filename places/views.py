@@ -38,7 +38,7 @@ def index_page(request):
           'properties': {
             'title': place.title,
             'placeId': place.id,
-            'detailsUrl': f'/place/{place.id}'
+            'detailsUrl': f'/place/{place.id}/'
           }
         })
 

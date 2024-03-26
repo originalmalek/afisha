@@ -25,6 +25,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index_page),
-    path('place/<int:place_id>', generate_place_json),
+    path('place/<int:place_id>/', generate_place_json),
     path('tinymce/', include('tinymce.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
