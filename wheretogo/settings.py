@@ -16,10 +16,6 @@ from environs import Env
 env = Env()
 env.read_env()
 
-secret_key=env.str('SECRET_KEY')
-debug=env.bool('DEBUG')
-session_token_secure = env.bool('SESSION_COOKIE_SECURE')
-csfr_token_secure = env.bool('CSRF_COOKIE_SECURE')
 
 static=env.str('STATIC')
 
@@ -31,15 +27,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = secret_key
+SECRET_KEY = env.str('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = debug
+DEBUG = env.bool('DEBUG')
 
 ALLOWED_HOSTS = []
 
-SESSION_COOKIE_SECURE = session_token_secure
-CSRF_COOKIE_SECURE = csfr_token_secure
+SESSION_COOKIE_SECURE = env.bool('SESSION_COOKIE_SECURE')
+CSRF_COOKIE_SECURE = env.bool('CSRF_COOKIE_SECURE')
 # Application definition
 
 INSTALLED_APPS = [
