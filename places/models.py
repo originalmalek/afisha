@@ -8,8 +8,8 @@ class Place(models.Model):
     title = models.CharField(max_length=200, verbose_name='Название экскурсии')
     short_description = models.TextField(verbose_name='Краткое описание', blank=True, null=True)
     long_description = HTMLField(verbose_name='Полное описание', blank=True, null=True)
-    lng = models.CharField(max_length=20, verbose_name='Долгота')
-    lat = models.CharField(max_length=20, verbose_name='Широта')
+    lng = models.DecimalField(max_digits=9, decimal_places=6, verbose_name='Долгота')
+    lat = models.DecimalField(max_digits=9, decimal_places=6, verbose_name='Широта')
 
     class Meta:
         ordering = ['title']
@@ -23,9 +23,18 @@ def get_upload_path(instance, filename):
 
 
 class Image(models.Model):
-    place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name='images', verbose_name='Название экскурсии')
-    img = models.ImageField(upload_to=get_upload_path, verbose_name='Изображение')
-    order = models.PositiveIntegerField(default=0, null=True, blank=True, verbose_name='Номер изображения')
+    place = models.ForeignKey(Place, on_delete=models.CASCADE,
+                              related_name='images',
+                              verbose_name='Название экскурсии')
+
+    img = models.ImageField(upload_to=get_upload_path,
+                            verbose_name='Изображение')
+
+    order = models.PositiveIntegerField(default=0,
+                                        null=True,
+                                        blank=True,
+                                        verbose_name='Номер изображения',
+                                        db_index=True)
 
     class Meta:
         ordering = ['order']
