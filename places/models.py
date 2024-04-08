@@ -1,3 +1,5 @@
+import os
+
 from django.db import models
 from tinymce.models import HTMLField
 
@@ -17,7 +19,7 @@ class Place(models.Model):
 
 
 def get_upload_path(instance, filename):
-    return f'places/{instance.place.id}/{filename}'
+    return os.path.join('places', str(instance.place.id), filename)
 
 
 class Image(models.Model):
