@@ -21,9 +21,9 @@ def get_upload_path(instance, filename):
 
 
 class Image(models.Model):
-    place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name='images')
-    img = models.ImageField(upload_to=get_upload_path)
-    order = models.PositiveIntegerField(default=0, null=True, blank=True)
+    place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name='images', verbose_name='Название экскурсии')
+    img = models.ImageField(upload_to=get_upload_path, verbose_name='Изображение')
+    order = models.PositiveIntegerField(default=0, null=True, blank=True, verbose_name='Номер изображения')
 
     class Meta:
         ordering = ['order']
