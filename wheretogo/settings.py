@@ -32,7 +32,7 @@ SECRET_KEY = env.str('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 SESSION_COOKIE_SECURE = env.bool('SESSION_COOKIE_SECURE')
 CSRF_COOKIE_SECURE = env.bool('CSRF_COOKIE_SECURE')
