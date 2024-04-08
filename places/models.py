@@ -4,8 +4,8 @@ from tinymce.models import HTMLField
 
 class Place(models.Model):
     title = models.CharField(max_length=200, verbose_name='Название экскурсии')
-    short_description = models.TextField(verbose_name='Краткое описание')
-    long_description = HTMLField(verbose_name='Полное описание')
+    short_description = models.TextField(verbose_name='Краткое описание', blank=True, null=True)
+    long_description = HTMLField(verbose_name='Полное описание', blank=True, null=True)
     lng = models.CharField(max_length=20, verbose_name='Долгота')
     lat = models.CharField(max_length=20, verbose_name='Широта')
 
@@ -23,7 +23,7 @@ def get_upload_path(instance, filename):
 class Image(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name='images')
     img = models.ImageField(upload_to=get_upload_path)
-    order = models.PositiveIntegerField(default=0)
+    order = models.PositiveIntegerField(default=0, null=True, blank=True)
 
     class Meta:
         ordering = ['order']
