@@ -32,8 +32,7 @@ class Command(BaseCommand):
                 if response.ok:
                     img_data = response.content
                     img_name = img_url.split("/")[-1]
-                    new_image = Image(place=new_place)
-                    new_image.img.save(img_name, ContentFile(img_data), save=True)
+                    Image.objects.create(place = new_place, img=ContentFile(img_data, name=img_name))
 
         else:
             print("Place wasn't added because it already exists")
