@@ -1,15 +1,8 @@
-import os
-
-import django
 import requests
 from django.core.files.base import ContentFile
 from django.core.management.base import BaseCommand
 
 from places.models import Place, Image
-
-os.environ['DJANGO_SETTINGS_MODULE'] = 'wheretogo.settings'
-
-django.setup()
 
 
 class Command(BaseCommand):
