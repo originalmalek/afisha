@@ -27,10 +27,10 @@ def generate_place_json(request, place_id):
 
 def index_page(request):
     places = Place.objects.all()
-    places_list = []
+    on_map_places = []
 
     for place in places:
-        places_list.append({
+        on_map_places.append({
             'type': 'Feature',
             'geometry': {
                 'type': 'Point',
@@ -45,4 +45,4 @@ def index_page(request):
 
     return render(request, template_name='places/templates/places/index.html',
                   context={'places': {"type": "FeatureCollection",
-                                      "features": places_list}})
+                                      "features": on_map_places}})
