@@ -7,10 +7,8 @@ import django
 import requests
 from django.core.files.base import ContentFile
 
-# Get the current path
 path = Path(__file__).resolve()
 
-# Add the parent directory (dvmn-django) to the system path
 sys.path.append(str(path.parent.parent))
 os.environ['DJANGO_SETTINGS_MODULE'] = 'wheretogo.settings'
 
