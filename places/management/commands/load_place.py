@@ -33,7 +33,7 @@ class Command(BaseCommand):
         for img_url in place['imgs']:
             response = requests.get(img_url)
 
-            if response.status_code == 200:
+            if response.ok:
                 img_data = response.content
                 img_name = img_url.split("/")[-1]
 
