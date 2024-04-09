@@ -1,5 +1,6 @@
 import json
 
+from django.db.models import Prefetch
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 
@@ -7,10 +8,9 @@ from places.models import Place, Image
 
 
 def generate_place_json(request, place_id):
-    place = get_object_or_404(Place, pk=place_id)
-    images = Image.objects.filter(place=place)
+    place = get_object_or_404(Place.objects.prefetch_related(Prefetch("images")), pk=place_id)
 
-    imgs = [image.img.url for image in images]
+    imgs = [image.img.url for image in place.images.all()]
 
     response = {
         'title': place.title,
