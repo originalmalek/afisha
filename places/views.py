@@ -43,6 +43,6 @@ def index_page(request):
             }
         })
 
-    return render(request, template_name='places/templates/index.html',
+    return render(request, template_name='places/templates/places/index.html',
                   context={'places': {"type": "FeatureCollection",
                                       "features": places_list}})
