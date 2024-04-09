@@ -31,7 +31,6 @@ class Image(models.Model):
                             verbose_name='Изображение')
 
     order = models.PositiveIntegerField(default=0,
-                                        null=True,
                                         blank=True,
                                         verbose_name='Номер изображения',
                                         db_index=True)
