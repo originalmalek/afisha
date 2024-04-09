@@ -3,6 +3,7 @@ import json
 from django.db.models import Prefetch
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
 
 from places.models import Place, Image
 
@@ -39,10 +40,10 @@ def index_page(request):
             'properties': {
                 'title': place.title,
                 'placeId': place.id,
-                'detailsUrl': f'/place/{place.id}/'
+                'detailsUrl': reverse(generate_place_json, args=[place.id])
             }
         })
-
+    print(reverse(generate_place_json, args=[place.id]))
     return render(request, template_name='places/templates/places/index.html',
                   context={'places': {"type": "FeatureCollection",
                                       "features": on_map_places}})
