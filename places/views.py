@@ -43,7 +43,7 @@ def index_page(request):
                 'detailsUrl': reverse(generate_place_json, args=[place.id])
             }
         })
-    print(reverse(generate_place_json, args=[place.id]))
+
     return render(request, template_name='places/templates/places/index.html',
                   context={'places': {"type": "FeatureCollection",
                                       "features": on_map_places}})
