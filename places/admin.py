@@ -11,8 +11,7 @@ class AdminImage(admin.ModelAdmin, SortableAdminMixin):
     readonly_fields = ['get_preview']
     autocomplete_fields = ['place']
     def get_preview(self, obj):
-        def get_preview(self, obj):
-            return format_html('<img src="{}" style="max-height: 200px; max-width: 200px"/>', obj.img.url)
+        return format_html('<img src="{}" style="max-height: 200px; max-width: 200px"/>', obj.img.url)
 
 
 class AdminImageInline(SortableInlineAdminMixin, admin.TabularInline):
